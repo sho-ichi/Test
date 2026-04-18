@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h1>MQTT Data: <span id="data">---</span></h1>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
+    <script>
+        // ブローカーへ接続 (host: IPアドレス, port: 9001)
+        client = new Paho.MQTT.Client("YOUR_BROKER_IP", 9001, "browser_client");
+        
+        client.onMessageArrived = (message) => {
+            document.getElementById("data").innerText = message.payloadString;
+        };
+
+        client.connect({
+            onSuccess: () => {
+                client.subscribe("sensors/temperature");
+            },
+            useSSL: false // 本番環境ではtrueを推奨
+        });
+    </script>
+</body>
+</html>
