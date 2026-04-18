@@ -6,7 +6,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js"></script>
     <script>
         // ブローカーへ接続 (host: IPアドレス, port: 9001)
-        client = new Paho.MQTT.Client("YOUR_BROKER_IP", 9001, "browser_client");
+        client = new Paho.MQTT.Client("192.168.11.15", 9001, "browser_client");
         
         client.onMessageArrived = (message) => {
             document.getElementById("data").innerText = message.payloadString;
